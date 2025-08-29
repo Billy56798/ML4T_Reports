@@ -277,7 +277,8 @@
 	dashed=false,
 	sorting=ynt,
 	natbib=true,
-	maxbibnames=99
+	maxbibnames=99,
+    nodates=true
 ]{biblatex}
 
 \DeclareFieldFormat{bibentrysetcount}{\mkbibparens{\mknumalph{#1}}}
@@ -328,6 +329,19 @@
 % Missing Year
 \newcommand{\citeauthnodate}[1]{\citeauthor{#1}, n.d.}
 \newcommand{\citeauthnodatep}[1]{(\citeauthor{#1}, n.d.)}
+
+
+\DeclareFieldFormat{date}{%
+  \thefield{year}\addcomma\addspace%
+  \ifbibstring{\thefield{month}}%
+    {\bibstring{\thefield{month}}\addspace}%
+    {\mkbibmonth{\thefield{month}}\addspace}%
+  \thefield{day}%
+}
+
+\DefineBibliographyStrings{english}{
+  urlseen = {Retrieved},
+}
 
 %%
 % Metadata
